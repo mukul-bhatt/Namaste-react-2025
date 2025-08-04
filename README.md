@@ -1,0 +1,1 @@
+# Namaste React in 2025- Goal is to become a front-end developer in less than 6 months and get a job.
