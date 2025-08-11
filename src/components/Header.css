@@ -1,0 +1,105 @@
+/* Header.css by gemini - it was okay
+
+/* Main container for the header */
+/* .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+   */
+  /* Logo styling */
+  /* .logo {
+    width: 100px;
+    height: auto;
+  } */
+  
+  /* Navigation items container */
+  /* .nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  } */
+  
+  /* Individual navigation links */
+  /* .nav-items > ul > li {
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  } */
+  
+  /* Hover effect for the links */
+  /* .nav-items > ul > li:hover {
+    color: #007bff;
+  } */
+
+
+
+   /* Header.css - by chatgpt - this is awesome and i am using this */ 
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo {
+    height: 70px;
+    width: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .nav-items ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-items li {
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-items li:hover {
+    color: #ffe082;
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-items ul {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+  
+    .nav-items li {
+      padding: 0.5rem 0;
+    }
+  }
+  

@@ -12,3 +12,10 @@ anonymous.text
 
 # Ignore .vscode
 .vscode
+
+# Ignore temporary files
+data.js
+practice.js
+
+# Ignore .DS_Store 
+.DS_Store

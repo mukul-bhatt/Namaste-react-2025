@@ -1,7 +1,7 @@
 {
   "name": "namaste-react",
   "version": "1.0.0",
-  "source": "index.html",
+  "source": "src/index.html",
   "description": "This is namaste react practice in 2025 ",
   "scripts": {
     "test": "jest",
@@ -11,7 +11,8 @@
   "author": "Mukul Bhatt",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.15.4"
+    "parcel": "^2.15.4",
+    "sharp": "^0.33.5"
   },
   "dependencies": {
     "react": "^19.1.0",
