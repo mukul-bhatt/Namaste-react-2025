@@ -1,32 +1,51 @@
-import swiggyData from "../utils/data";
 import RestaurantCard from "./RestaurantCard";
-import "../index.css";
-import { useState } from "react";
+// import "../index.css";
+import "./Body.css";
+import Shimmer from "./Shimmer";
+import SubHeader from "./SubHeader";
 
+import { useState, useEffect } from "react";
+
+export const fetchData = async (setRestaurantsData) => {
+  setRestaurantsData([]);
+  const data = await fetch(
+    "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6304203&lng=77.21772159999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING#"
+  );
+  const json = await data.json();
+
+  // Here i need to use optional chaining - learn before using
+  setRestaurantsData(
+    json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+  );
+};
 
 const Body = () => {
 
-  const [restaurantsData, setRestaurantsData] = useState(swiggyData);
+  const [restaurantsData, setRestaurantsData] = useState([]);
 
-  const filterRestaurants = (restaurants) => {
-    const filteredRestaurants = restaurants.filter(
-      (res) => res.info.avgRating >= 4.5
+  useEffect(() => {
+    fetchData(setRestaurantsData);
+  }, []);
+
+  if (restaurantsData.length === 0) {
+    return (
+      <div className="shimmer-grid">
+        {Array(8).fill("").map((ele, index) => (
+            <Shimmer key={index} />
+          )
+        )}
+      </div>
     );
-    setRestaurantsData(filteredRestaurants);
-  };
+  }
 
-  
   return (
     <div className="body">
-      <div className="filter">
-        <button
-          className="filter-btn"
-          onClick={() => filterRestaurants(swiggyData)}
-        >
-          Top rated Restaurants
-        </button>
-      </div>
+      <SubHeader
+        restaurantsData={restaurantsData}
+        setRestaurantsData={setRestaurantsData}
+      />
       <div className="res-container">
+        {/* {console.log("restaurants", restaurantsData)} */}
         {restaurantsData.map((obj) => {
           return <RestaurantCard data={obj.info} key={obj.info.id} />;
         })}

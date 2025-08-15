@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+
   }
   
 /* .app{
@@ -26,5 +27,10 @@
 
 
 .body{
-    margin: 10px 40px;
+    background-color: #ffb2b2;
+    margin: 20px 0px;
+    padding: 0px 45px;
 } 
+
+
+

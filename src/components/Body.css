@@ -1,0 +1,141 @@
+
+ .filter-btn {
+    /* Base styling */
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    /* Modern gradient background */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    
+    /* Subtle shadow */
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    
+    /* Typography */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Hover effects */
+  .filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  }
+  
+  /* Active/pressed state */
+  .filter-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+  }
+  
+  /* Focus state for accessibility */
+  .filter-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+  }
+  
+  /* Ripple effect on click */
+  .filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  .filter-btn:active::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  /* Alternative color variants */
+  .filter-btn.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  
+  .filter-btn.secondary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+  }
+  
+  .filter-btn.success {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+  }
+  
+  .filter-btn.warning {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    box-shadow: 0 4px 15px rgba(250, 112, 154, 0.3);
+  }
+  
+  /* Selected/active state for filter buttons */
+  .filter-btn.selected {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+    transform: translateY(-1px);
+  }
+  
+  /* Disabled state */
+  .filter-btn:disabled {
+    background: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .filter-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .filter-btn {
+      padding: 10px 20px;
+      font-size: 13px;
+      border-radius: 20px;
+    }
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .filter-btn {
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .filter-btn:hover {
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    }
+  } 
+
+  .button-elements{
+
+    gap: 50px;
+    display: flex;
+    padding: 10px 11px;
+  }
+
+
+  /* Css for Sub-Header component */
+
+  .sub-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }

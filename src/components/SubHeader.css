@@ -1,0 +1,52 @@
+/* Hide label visually but keep it accessible */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    color: #888;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 14px 10px 40px; /* left padding for icon */
+    border: 1px solid #ddd;
+    border-radius: 999px; /* fully rounded pill style */
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: #f8f8f8;
+  }
+  
+  .search-input:focus {
+    border-color: #fc8019; /* Swiggy orange */
+    box-shadow: 0 0 0 3px rgba(252, 128, 25, 0.2);
+    background-color: #fff;
+  }
+  
+  .search-input::placeholder {
+    color: #aaa;
+  }
+  
