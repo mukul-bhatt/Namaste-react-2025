@@ -3,13 +3,13 @@ import "./MenuCard.css";
 
 const IMG_CDN_URL = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/`;
 
-const MenuCard = ({data, title, categoryId}) =>{
+const MenuCard = ({data}) =>{
 
     const {name, defaultPrice, description, imageId, ratings} = data.card.info;
 
 
 
-    if(title === categoryId) {
+
         return (
             <div className="menu-card">
                 <div className="left">
@@ -27,7 +27,7 @@ const MenuCard = ({data, title, categoryId}) =>{
     
             </div>
         )
-    }
+
     }
     
 

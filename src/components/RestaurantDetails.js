@@ -47,7 +47,7 @@ const RestaurantDetails = () => {
 
   return (
     <div className="res-details-card">
-      <h2>{restaurantName}</h2>
+      <h2 className="res-name">{restaurantName}</h2>
 
       <div className="menu">
         {outerMenuCards.map((item) => {
@@ -65,8 +65,9 @@ const RestaurantDetails = () => {
             const isMenuOpen = openTitle === categoryId;    // check implemented using id's
             const CategoryName = item.card.card.title;
             return (
-              <div key={categoryId}>
-                <div className="header res-headings">
+              <div key={categoryId} className="menu-container">
+                <div className="menu-headings">
+
                   <h1>{CategoryName}</h1>
 
                   {cardType ===
@@ -82,12 +83,13 @@ const RestaurantDetails = () => {
                 </div>
 
                 {/* Menu items for the particular category */}
-                <div className="menu-container">
-                  {cardType ===
+
+                <div>
+                  {isMenuOpen &&  cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
                       return (
-                        <MenuCard data={menu} key={menu.card.info.id} title={openTitle} categoryId={categoryId} />
+                        <MenuCard data={menu} key={menu.card.info.id} />
                       );
                     })}
 
@@ -99,6 +101,7 @@ const RestaurantDetails = () => {
                       );
                     })}
                 </div>
+
               </div>
             );
           }

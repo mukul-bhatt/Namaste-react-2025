@@ -1,0 +1,37 @@
+.nested-headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    margin: 6px 0 6px 0px; /* indent nested sections */
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .nested-headings:hover {
+    background: #f3f3f3;
+  }
+  
+  .nested-headings h1 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+    margin: 0;
+  }
+  
+  .nested-headings button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ff7043; /* slightly lighter orange */
+    transition: transform 0.2s ease;
+  }
+  
+  .nested-headings button:hover {
+    transform: scale(1.15);
+  }
+  
