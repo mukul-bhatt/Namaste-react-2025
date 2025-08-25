@@ -1,9 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-// import "../index.css";
 import "./Body.css";
 import Shimmer from "./Shimmer";
 import SubHeader from "./SubHeader";
-
+import { Link } from "react-router";
 import { useState, useEffect } from "react";
 
 export const fetchData = async (setRestaurantsData) => {
@@ -47,7 +46,13 @@ const Body = () => {
       <div className="res-container">
         {/* {console.log("restaurants", restaurantsData)} */}
         {restaurantsData.map((obj) => {
-          return <RestaurantCard data={obj.info} key={obj.info.id} />;
+          return(
+            <div key={obj.info.id}>
+            <Link to={`/restaurant/${obj.info.id}`} >
+            <RestaurantCard data={obj}  />
+            </Link>
+            </div>
+          ) 
         })}
       </div>
     </div>

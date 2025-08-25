@@ -19,3 +19,8 @@ practice.js
 
 # Ignore .DS_Store 
 .DS_Store
+
+# Ignore Backend
+backend/
+
+Size-reducer

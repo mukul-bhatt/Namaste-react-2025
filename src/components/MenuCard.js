@@ -1,0 +1,37 @@
+import "./MenuCard.css";
+
+
+const IMG_CDN_URL = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/`;
+
+const MenuCard = ({data, title, titleName}) =>{
+
+    const {name, defaultPrice, description, imageId, ratings} = data.card.info;
+
+
+
+    if(title === titleName) {
+        return (
+            <div className="menu-card">
+                <div className="left">
+                    <h2>{name}</h2>
+                    <h3>₹ {defaultPrice/100} </h3>
+                    <h3>{ratings.aggregatedRating.rating}⭐️</h3>
+                    {/* <h4>{description.substr(0, 150)+"....."}</h4> */}
+                </div>
+    
+               
+    
+                <div className="right">
+                    <img src={IMG_CDN_URL + imageId} />
+                </div>
+    
+            </div>
+        )
+    }
+    }
+    
+
+
+export default MenuCard;    
+
+

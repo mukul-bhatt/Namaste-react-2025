@@ -1,34 +1,24 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-
-const heading = React.createElement(
-  "h1",
-  { id: "heading" },
-  "Mukul bhatt is here with React.createElement"
-);
-
-const Title = (
-  <div>
-    <h1>This is title component 🚀</h1>
-  </div>
-);
-
-const header = (
-  <>
-    <h1>This is h3 </h1>
-    <h2>This is h2</h2>
-    <h3>This is h1</h3>
-  </>
-);
-
-const HeadingComponent = () => (
-  <>
-    {header}
-    <h1 id="jsxHeading" className="patani">
-      This is a jsxHeading
-    </h1>
-  </>
-);
+import AppLayout from "./src/components/AppLayout";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Body from "./src/components/Body";
+import AboutUs from "./src/components/AboutUs";
+import ContactUs from "./src/components/ContactUs";
+import Error from "./src/components/Error";
+import RestaurantDetails from "./src/components/RestaurantDetails";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<HeadingComponent />);
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<Body />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/restaurant/:restaurantId" element={<RestaurantDetails />} />
+
+        <Route path="*" element={<Error />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
+);

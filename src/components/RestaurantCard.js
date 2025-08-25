@@ -2,9 +2,19 @@ import {CDN_URL} from "../utils/constants";
 import "./RestaurantCard.css";
 
 const RestaurantCard = ({data}) => {
-    const {name, avgRating, cuisines, costForTwo, cloudinaryImageId} = data;
+    // console.log(props);
+
+    const {info, cta} = data;
+    const {name, avgRating, cuisines, costForTwo, cloudinaryImageId} = info;
+
+    const {link} = cta;
+
+    const handleClick = () => {
+      console.log(link);
+    }
+
     return (
-      <div className="res-card">
+      <div className="res-card" onClick={handleClick}>
         <img
           src ={ CDN_URL + cloudinaryImageId }
           alt="restaurant_image"
@@ -16,6 +26,7 @@ const RestaurantCard = ({data}) => {
         <p>{cuisines.join(', ')} </p>
         <p>{costForTwo}</p>
       </div>
+
     );
   };
 
