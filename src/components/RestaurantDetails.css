@@ -6,6 +6,18 @@
   color: #fc8019;              /* swiggy colour for readability */
   color: #333;              /* if black color is needed */
   letter-spacing: 0.5px;     /* slight spacing for elegance */
+  position: relative;
+  display: inline-block;
+}
+
+.res-name::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #fc8019, #ffaf65);
+  margin: 8px auto 0;
+  border-radius: 2px;
 }
 
 .res-details-card {
@@ -14,7 +26,7 @@
   border-bottom: 2px solid #f0f0f0; /* subtle divider */
 }
 
-  
+
 .res-heading{
   display: flex; 
   justify-content: center;
