@@ -2,6 +2,7 @@ import MenuCard from "./MenuCard";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./RestaurantDetails.css";
+import NestedCard from "./NestedCard";
 
 const RestaurantDetails = () => {
   const [outerData, setOuterData] = useState([]);
@@ -34,6 +35,8 @@ const RestaurantDetails = () => {
     fetchMenu(MENUAPI);
   }, []);
 
+
+  // Here useMemo can be used read about it, also graphQl can be used when data is large and only a small poriton of it is being used - do check it out
   const outerMenuCards =
     outerData.length === 0
       ? []
@@ -84,42 +87,15 @@ const RestaurantDetails = () => {
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
                       return (
-                        <MenuCard
-                          data={menu}
-                          key={menu.card.info.id}
-                          title={openTitle}
-                          categoryId={categoryId}
-                        />
+                        <MenuCard data={menu} key={menu.card.info.id} title={openTitle} categoryId={categoryId} />
                       );
                     })}
 
                   {cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory` &&
                     item.card.card.categories?.map((item) => {
-                      const isNestedMenuOpen = openTitle === item.title;  // check implemented using title name - i think using id is better, so that i never get into this bug ever again
                       return (
-                        <div key={item.categoryId} className="nested-card">
-                          <h1>{item.title}</h1>
-
-                          <button
-                            onClick={() => {
-                              setOpenTitle(
-                                isNestedMenuOpen ? "" : item.title
-                              );
-                            }} 
-                          >
-                            {isNestedMenuOpen ? "⬆️" : "⬇️"}
-                          </button>
-
-                          {/* Nested items  */}
-                          <div className="menu-container">
-                            {item.itemCards.map((menuItem)=>{
-                              return <MenuCard data={menuItem} key={menuItem.card.info.id} title={openTitle} categoryId={item.title} />
-                            })}
-                          </div>
-                        </div>
-
-
+                        <NestedCard item={item} openTitle={openTitle} setOpenTitle={setOpenTitle} key={item.categoryId}/>
                       );
                     })}
                 </div>
@@ -140,3 +116,4 @@ export default RestaurantDetails;
 //  - which approach is better for this bug, category or title ??? ❌
 //  - code looks messy - make it beautiful i.e short and easy to read and understand ❌
 //  - Remove unnecessary commnets ❌
+
