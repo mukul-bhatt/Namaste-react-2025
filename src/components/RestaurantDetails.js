@@ -51,6 +51,7 @@ const RestaurantDetails = () => {
 
       <div className="menu">
         {outerMenuCards.map((item) => {
+          // console.log(item);
           const cardType = item?.card?.card["@type"];
 
           if (
@@ -87,7 +88,7 @@ const RestaurantDetails = () => {
                   {isMenuOpen &&  cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
-                      // console.log("menu",menu)
+                      console.log("menu",menu)
                       return (
                         <MenuCard data={menu} key={menu.card.info.id} />
                       );

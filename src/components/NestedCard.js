@@ -20,6 +20,7 @@ const NestedCard = ({item, openTitle, setOpenTitle}) => {
       {/* Nested items  */}
      {isNestedMenuOpen && <div>
         {item.itemCards.map((menuItem) => {
+          console.log("menuItem", menuItem);
           return (
             <MenuCard 
               data={menuItem}

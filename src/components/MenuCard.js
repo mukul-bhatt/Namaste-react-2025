@@ -5,13 +5,13 @@ const IMG_CDN_URL = `https://media-assets.swiggy.com/swiggy/image/upload/fl_loss
 
 const MenuCard = ({data}) =>{
 
-    const {name, defaultPrice, description, imageId, ratings} = data.card.info;
+    const {name, defaultPrice, finalPrice, price, description, imageId, ratings} = data.card.info;
 
         return (
             <div className="menu-card">
                 <div className="left">
                     <h2>{name}</h2>
-                    <h3>₹ {defaultPrice/100} </h3>
+                    <h3>₹ {defaultPrice/100 || finalPrice/100 || price/100} </h3>
                     <h3>{ratings.aggregatedRating.rating}⭐️</h3>
                     <h4>
                     {
