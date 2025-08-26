@@ -1,21 +1,89 @@
-/* .menu-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  } */
-  
+.res-name {
+  font-size: 2.5rem;           /* large text */
+  font-weight: 700;          /* bold */
+  text-align: center;        /* center it */
+  margin: 20px 0;            /* spacing above & below */
+  color: #fc8019;              /* swiggy colour for readability */
+  color: #333;              /* if black color is needed */
+  letter-spacing: 0.5px;     /* slight spacing for elegance */
+  position: relative;
+  display: inline-block;
+}
+
+.res-name::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #fc8019, #ffaf65);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.res-details-card {
+  text-align: center;        /* center children by default */
+  padding: 20px;
+  border-bottom: 2px solid #f0f0f0; /* subtle divider */
+}
+
+
 .res-heading{
   display: flex; 
   justify-content: center;
   gap: 100px; 
 }
 
-.menu-container{
-  /* display: none; */
-  color:blue;
+.menu-container {
+  max-width: 800px;      /* restrict width */
+  margin: 20px auto;     /* center horizontally with spacing */
+  padding: 20px;         /* inner padding */
+  background: #fff;      /* white background like Swiggy */
+  border-radius: 12px;   /* rounded edges */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* soft shadow */
 }
 
-.nested-card{
-  display: "flex";
-  /* flex-direction: row; */
+@media (max-width: 900px) {
+  .menu-container {
+    max-width: 95%;
+    padding: 15px;
+  }
 }
+
+.menu-headings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  margin: 8px 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.menu-headings:hover {
+  background: #fafafa;
+}
+
+.menu-headings h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.menu-headings button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: #ff5722; /* Swiggy orange */
+}
+
+.menu-headings button:hover {
+  transform: scale(1.2);
+}
+

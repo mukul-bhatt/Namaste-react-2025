@@ -48,7 +48,7 @@ const Body = () => {
         {restaurantsData.map((obj) => {
           return(
             <div key={obj.info.id}>
-            <Link to={`/restaurant/${obj.info.id}`} >
+            <Link to={`/restaurant/${obj.info.id}`} className="custom-link" >
             <RestaurantCard data={obj}  />
             </Link>
             </div>

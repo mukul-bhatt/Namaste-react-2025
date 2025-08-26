@@ -2,6 +2,7 @@ import MenuCard from "./MenuCard";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./RestaurantDetails.css";
+import NestedCard from "./NestedCard";
 
 const RestaurantDetails = () => {
   const [outerData, setOuterData] = useState([]);
@@ -23,9 +24,6 @@ const RestaurantDetails = () => {
       console.log("Menu data from backend:", data);
 
       setOuterData(data);
-      //   console.log(data);
-      //   console.log(data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards);
-      //   console.log(data.data.cards[0].card.card.text);
     } catch (err) {
       console.error("Failed to fetch menu from backend:", err);
     }
@@ -37,37 +35,46 @@ const RestaurantDetails = () => {
     fetchMenu(MENUAPI);
   }, []);
 
+
+  // Here useMemo can be used read about it, also graphQl can be used when data is large and only a small poriton of it is being used - do check it out
   const outerMenuCards =
     outerData.length === 0
       ? []
       : outerData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
   const restaurantName =
     outerData.length === 0 ? [] : outerData.data.cards[0].card.card.text;
+
+
   return (
     <div className="res-details-card">
-      <h2>{restaurantName}</h2>
+      <h2 className="res-name">{restaurantName}</h2>
 
       <div className="menu">
         {outerMenuCards.map((item) => {
+          // console.log(item);
           const cardType = item?.card?.card["@type"];
-          console.log(item);
+
           if (
             cardType ===
               `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` ||
             cardType ===
               `type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory`
           ) {
-            const isMenuOpen = openTitle === item.card.card.title;
+
             const categoryId = item.card.card.categoryId;
+            const isMenuOpen = openTitle === categoryId;    // check implemented using id's
+            const categoryName = item.card.card.title;
             return (
-              <div key={categoryId}>
-                <div className="header res-headings">
-                  <h1>{item.card.card.title}</h1>
+              <div key={categoryId} className="menu-container">
+                <div className="menu-headings">
+
+                  <h1>{categoryName}</h1>
+
                   {cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` && (
                     <button
                       onClick={() => {
-                        setOpenTitle(isMenuOpen ? "" : item.card.card.title);
+                        setOpenTitle(isMenuOpen ? "" : categoryId);
                       }}
                     >
                       {isMenuOpen ? "⬆️" : "⬇️"}
@@ -75,50 +82,28 @@ const RestaurantDetails = () => {
                   )}
                 </div>
 
-                <div className="menu-container">
-                  {cardType ===
+                {/* Menu items for the particular category */}
+
+                <div>
+                  {isMenuOpen &&  cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
+                      console.log("menu",menu)
                       return (
-                        <MenuCard
-                          data={menu}
-                          key={menu.card.info.id}
-                          title={openTitle}
-                          titleName={item.card.card.title}
-                        />
+                        <MenuCard data={menu} key={menu.card.info.id} />
                       );
                     })}
 
                   {cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory` &&
                     item.card.card.categories?.map((item) => {
-                      const isNestedMenuOpen = openTitle === item.title;
+                      //  console.log("item",item)
                       return (
-                        <div key={item.categoryId} className="nested-card">
-                          <h1>{item.title}</h1>
-
-                          <button
-                            onClick={() => {
-                              setOpenTitle(
-                                isNestedMenuOpen ? "" : item.title
-                              );
-                            }} 
-                          >
-                            {isNestedMenuOpen ? "⬆️" : "⬇️"}
-
-                            
-                          </button>
-
-                          <div className="menu-container">
-                            {item.itemCards.map((menuItem)=>{
-                              console.log("nested-item:",item)
-                              return <MenuCard data={menuItem} key={menuItem.card.info.id} title={openTitle} titleName={item.title} />
-                            })}
-                          </div>
-                        </div>
+                        <NestedCard item={item} openTitle={openTitle} setOpenTitle={setOpenTitle} key={item.categoryId}/>
                       );
                     })}
                 </div>
+
               </div>
             );
           }
@@ -129,3 +114,11 @@ const RestaurantDetails = () => {
 };
 
 export default RestaurantDetails;
+
+
+// What's next:
+//  - Bug fix : ✅
+//  - which approach is better for this bug, category or title ??? ❌
+//  - code looks messy - make it beautiful i.e short and easy to read and understand ❌
+//  - Remove unnecessary commnets ❌
+
