@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import SubHeader from "./SubHeader";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const fetchData = async (setRestaurantsData) => {
   setRestaurantsData([]);
@@ -25,6 +26,10 @@ const Body = () => {
   useEffect(() => {
     fetchData(setRestaurantsData);
   }, []);
+
+  const status = useOnlineStatus();
+
+  if(!status) return <h1> Oops!! Looks like you are offline. Please check your internet </h1>
 
   if (restaurantsData.length === 0) {
     return (

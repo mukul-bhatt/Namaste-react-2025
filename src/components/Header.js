@@ -1,6 +1,7 @@
 import "./Header.css";
 import { useState } from "react";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const logo = new URL(
   "../assets/food_logo.jpg?width=100&height=95",
@@ -10,6 +11,8 @@ const logo = new URL(
 const Header = () => {
   const [loginButton, setLoginButton] = useState("Login");
 
+  const status = useOnlineStatus();
+  // console.log("status", status);
   return (
     <div className="header">
       <img src={logo} alt="Logo" className="logo" />
@@ -26,6 +29,10 @@ const Header = () => {
           <Link to="contact" >
             <li>Contact us</li>
           </Link>
+
+          <Link to="grocery" >
+            <li>Grocery</li>
+          </Link>
           
           <li>Cart</li>
         </ul>
@@ -38,6 +45,10 @@ const Header = () => {
         }
       >
         {loginButton}
+      </button>
+
+      <button>
+       Online Status {status ? "✅" : "❌"} 
       </button>
     </div>
   );

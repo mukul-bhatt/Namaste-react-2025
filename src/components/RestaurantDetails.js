@@ -1,48 +1,23 @@
 import MenuCard from "./MenuCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 import "./RestaurantDetails.css";
 import NestedCard from "./NestedCard";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantDetails = () => {
-  const [outerData, setOuterData] = useState([]);
+  // state for menu is open/closed
   const [openTitle, setOpenTitle] = useState("");
 
   const { restaurantId } = useParams();
 
-  const MENUAPI = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6090126&lng=76.9854526&restaurantId=${restaurantId}&catalog_qa=undefined&submitAction=ENTER`;
-
-  const fetchMenu = async (url) => {
-    try {
-      const res = await fetch(url);
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
-      const data = await res.json();
-      console.log("Menu data from backend:", data);
-
-      setOuterData(data);
-    } catch (err) {
-      console.error("Failed to fetch menu from backend:", err);
-    }
-  };
-
-  // useEffect to make an api call via api recieved from the component in home page
-
-  useEffect(() => {
-    fetchMenu(MENUAPI);
-  }, []);
+  // fetch data for menu
+  const menuData = useRestaurantMenu(restaurantId);
 
 
   // Here useMemo can be used read about it, also graphQl can be used when data is large and only a small poriton of it is being used - do check it out
-  const outerMenuCards =
-    outerData.length === 0
-      ? []
-      : outerData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-  const restaurantName =
-    outerData.length === 0 ? [] : outerData.data.cards[0].card.card.text;
+  const outerMenuCards = menuData?.data?.cards?.find(c => c?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+  const restaurantName = menuData?.data?.cards[0]?.card?.card?.text || [];    // Read about optional chaining and || statement
 
 
   return (
@@ -88,7 +63,7 @@ const RestaurantDetails = () => {
                   {isMenuOpen &&  cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
-                      console.log("menu",menu)
+                      // console.log("menu",menu)
                       return (
                         <MenuCard data={menu} key={menu.card.info.id} />
                       );
@@ -122,3 +97,4 @@ export default RestaurantDetails;
 //  - code looks messy - make it beautiful i.e short and easy to read and understand ❌
 //  - Remove unnecessary commnets ❌
 
+ 
