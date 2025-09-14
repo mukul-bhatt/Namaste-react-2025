@@ -1,6 +1,7 @@
 /* RestaurantCard.css */
 
 .res-card {
+    position: relative;
     width: 250px;
     border-radius: 12px;
     overflow: hidden;
@@ -18,6 +19,22 @@
   .res-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .res-card label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #ff8c00, #ff4d4d);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    z-index: 1;
+    pointer-events: none; /* Prevent interfering with clicks */
   }
   
   .res-card img {

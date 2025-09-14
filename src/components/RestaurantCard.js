@@ -2,11 +2,10 @@ import {CDN_URL} from "../utils/constants";
 import "./RestaurantCard.css";
 
 const RestaurantCard = ({data}) => {
-    // console.log(props);
 
     const {info, cta} = data;
-    const {name, avgRating, cuisines, costForTwo, cloudinaryImageId} = info;
-
+    const {name, avgRating, cuisines, costForTwo, cloudinaryImageId, aggregatedDiscountInfoV3} = info;
+    const {header, subHeader} = aggregatedDiscountInfoV3;
     const {link} = cta;
 
     const handleClick = () => {
@@ -15,6 +14,8 @@ const RestaurantCard = ({data}) => {
 
     return (
       <div className="res-card" onClick={handleClick}>
+        {(header || subHeader) &&  <label>{header + (subHeader ? " " + subHeader : "")}</label>}
+        
         <img
           src ={ CDN_URL + cloudinaryImageId }
           alt="restaurant_image"
@@ -29,5 +30,18 @@ const RestaurantCard = ({data}) => {
 
     );
   };
+
+// Higher Order Components
+  export const withLabel = (RestaurantCard) => {
+    return (props) => {
+      return(
+        <>
+        <label>Items at ₹99</label>
+        <RestaurantCard {...props}/>
+        </>
+      )
+    }
+  }
+
 
 export default RestaurantCard;

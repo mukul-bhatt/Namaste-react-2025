@@ -39,11 +39,14 @@ const RestaurantDetails = () => {
             const categoryId = item.card.card.categoryId;
             const isMenuOpen = openTitle === categoryId;    // check implemented using id's
             const categoryName = item.card.card.title;
+            const numOfItems = item?.card?.card?.itemCards?.length;
+            // console.log("numofitems", numOfItems) 
             return (
               <div key={categoryId} className="menu-container">
                 <div className="menu-headings">
-
-                  <h1>{categoryName}</h1>
+                {cardType ===
+                    `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` ? <h1>{categoryName} ({numOfItems})</h1> : <h1>{categoryName}</h1>}
+                  
 
                   {cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` && (
@@ -63,7 +66,6 @@ const RestaurantDetails = () => {
                   {isMenuOpen &&  cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
-                      // console.log("menu",menu)
                       return (
                         <MenuCard data={menu} key={menu.card.info.id} />
                       );
@@ -74,7 +76,7 @@ const RestaurantDetails = () => {
                     item.card.card.categories?.map((item) => {
                       //  console.log("item",item)
                       return (
-                        <NestedCard item={item} openTitle={openTitle} setOpenTitle={setOpenTitle} key={item.categoryId}/>
+                        <NestedCard item={item} openTitle={openTitle} setOpenTitle={setOpenTitle} key={item.categoryId} />
                       );
                     })}
                 </div>

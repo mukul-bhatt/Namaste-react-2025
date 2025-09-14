@@ -12,7 +12,7 @@ export const fetchData = async (setRestaurantsData) => {
     "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6304203&lng=77.21772159999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING#"
   );
   const json = await data.json();
-
+  // console.log(json);
   // Here i need to use optional chaining - learn before using
   setRestaurantsData(
     json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
@@ -22,6 +22,8 @@ export const fetchData = async (setRestaurantsData) => {
 const Body = () => {
 
   const [restaurantsData, setRestaurantsData] = useState([]);
+
+
 
   useEffect(() => {
     fetchData(setRestaurantsData);

@@ -3,13 +3,14 @@ import "./NestedCard.css";
 
 const NestedCard = ({item, openTitle, setOpenTitle}) => {
 
+  console.log(item);
   const isNestedMenuOpen = openTitle === item.title;  // check implemented using title name - i think using id is better, so that i never get into this bug ever again
   return (
     <div>
       
       <div  className="nested-headings">
 
-      <h1>{item.title}</h1>
+      <h1>{item.title} ({item.itemCards.length})</h1>
 
       <button onClick={() => { setOpenTitle(isNestedMenuOpen ? "" : item.title) }}>
         {isNestedMenuOpen ? "⬆️" : "⬇️"}
