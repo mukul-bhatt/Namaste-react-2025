@@ -5,7 +5,7 @@ const RestaurantCard = ({data}) => {
 
     const {info, cta} = data;
     const {name, avgRating, cuisines, costForTwo, cloudinaryImageId, aggregatedDiscountInfoV3} = info;
-    const {header, subHeader} = aggregatedDiscountInfoV3;
+    const {header = "", subHeader = ""} = aggregatedDiscountInfoV3 || {};
     const {link} = cta;
 
     const handleClick = () => {

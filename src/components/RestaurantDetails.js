@@ -1,24 +1,31 @@
 import MenuCard from "./MenuCard";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useParams } from "react-router";
 import "./RestaurantDetails.css";
 import NestedCard from "./NestedCard";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { CartContext } from "../utils/CartContext";
+import AddToCartButton from "./AddToCartButton";
 
 const RestaurantDetails = () => {
   // state for menu is open/closed
   const [openTitle, setOpenTitle] = useState("");
+
+  // const [count, setCount] = useState(1);
 
   const { restaurantId } = useParams();
 
   // fetch data for menu
   const menuData = useRestaurantMenu(restaurantId);
 
+  
 
   // Here useMemo can be used read about it, also graphQl can be used when data is large and only a small poriton of it is being used - do check it out
-  const outerMenuCards = menuData?.data?.cards?.find(c => c?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
-  const restaurantName = menuData?.data?.cards[0]?.card?.card?.text || [];    // Read about optional chaining and || statement
-
+  const outerMenuCards =
+    menuData?.data?.cards?.find(
+      (c) => c?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    )?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+  const restaurantName = menuData?.data?.cards[0]?.card?.card?.text || []; // Read about optional chaining and || statement
 
   return (
     <div className="res-details-card">
@@ -35,18 +42,22 @@ const RestaurantDetails = () => {
             cardType ===
               `type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory`
           ) {
-
             const categoryId = item.card.card.categoryId;
-            const isMenuOpen = openTitle === categoryId;    // check implemented using id's
+            const isMenuOpen = openTitle === categoryId; // check implemented using id's
             const categoryName = item.card.card.title;
             const numOfItems = item?.card?.card?.itemCards?.length;
-            // console.log("numofitems", numOfItems) 
+            // console.log("numofitems", numOfItems)
             return (
               <div key={categoryId} className="menu-container">
                 <div className="menu-headings">
-                {cardType ===
-                    `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` ? <h1>{categoryName} ({numOfItems})</h1> : <h1>{categoryName}</h1>}
-                  
+                  {cardType ===
+                  `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` ? (
+                    <h1>
+                      {categoryName} ({numOfItems})
+                    </h1>
+                  ) : (
+                    <h1>{categoryName}</h1>
+                  )}
 
                   {cardType ===
                     `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` && (
@@ -63,11 +74,15 @@ const RestaurantDetails = () => {
                 {/* Menu items for the particular category */}
 
                 <div>
-                  {isMenuOpen &&  cardType ===
-                    `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
+                  {isMenuOpen &&
+                    cardType ===
+                      `type.googleapis.com/swiggy.presentation.food.v2.ItemCategory` &&
                     item.card.card.itemCards?.map((menu) => {
                       return (
-                        <MenuCard data={menu} key={menu.card.info.id} />
+                        <div key={menu.card.info.id}>
+                          <MenuCard data={menu} />
+                          {/* <AddToCartButton data={menu}/> */}
+                        </div>
                       );
                     })}
 
@@ -76,11 +91,15 @@ const RestaurantDetails = () => {
                     item.card.card.categories?.map((item) => {
                       //  console.log("item",item)
                       return (
-                        <NestedCard item={item} openTitle={openTitle} setOpenTitle={setOpenTitle} key={item.categoryId} />
+                        <NestedCard
+                          item={item}
+                          openTitle={openTitle}
+                          setOpenTitle={setOpenTitle}
+                          key={item.categoryId}
+                        />
                       );
                     })}
                 </div>
-
               </div>
             );
           }
@@ -92,11 +111,8 @@ const RestaurantDetails = () => {
 
 export default RestaurantDetails;
 
-
 // What's next:
 //  - Bug fix : ✅
 //  - which approach is better for this bug, category or title ??? ❌
 //  - code looks messy - make it beautiful i.e short and easy to read and understand ❌
 //  - Remove unnecessary commnets ❌
-
- 
