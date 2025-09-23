@@ -11,7 +11,7 @@ const Cart = () => {
       <h1>Cart</h1>
       <div className="cart">
         {cartItemsArray.map((item) => {
-            console.log(item);
+            // console.log(item);
           return (
             <div key={item.card.info.id}>
               <MenuCard data={item} />

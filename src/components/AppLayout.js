@@ -2,21 +2,24 @@ import Header from "./Header";
 import { Outlet } from "react-router";
 import {useState, useContext} from "react";
 import { CartContext } from "../utils/CartContext";
+import CartProvider from "./CartProvider";
 
 
 const AppLayout = () => {
 
-  const [cartItemsArray, setCartItemsArray] = useState(useContext(CartContext));
-  // const [count, setCount] = useState(0);
 
   return (
 
-    <CartContext value={{cartItemsArray, setCartItemsArray}}>
+    <CartProvider>
+      
+
     <div className="app">
       <Header /> 
       <Outlet />
     </div>
-    </CartContext>
+
+
+    </CartProvider>
 
   );
 };

@@ -17,6 +17,7 @@ const MenuCard = ({ data }) => {
     description,
     imageId,
     ratings,
+    id
   } = data.card.info;
 
   return (
@@ -37,7 +38,7 @@ const MenuCard = ({ data }) => {
         <img src={IMG_CDN_URL + imageId} />
       </div>
 
-      <AddToCartButton data={data} />
+      <AddToCartButton data={data} id={id} />
 
     </div>
   );
