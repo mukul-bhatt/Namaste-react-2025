@@ -5,13 +5,15 @@ import SubHeader from "./SubHeader";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import dummyResData from "../mocks/dummyRestaurantData";
 
 export const fetchData = async (setRestaurantsData) => {
   setRestaurantsData([]);
-  const data = await fetch(
-    "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6304203&lng=77.21772159999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING#"
-  );
-  const json = await data.json();
+  // const data = await fetch(
+  //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6304203&lng=77.21772159999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING#"
+  // );
+  // const json = await data.json();
+  const json = dummyResData;
   // console.log(json);
   // Here i need to use optional chaining - learn before using
   setRestaurantsData(

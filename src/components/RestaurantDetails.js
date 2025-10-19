@@ -6,6 +6,7 @@ import NestedCard from "./NestedCard";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { CartContext } from "../utils/CartContext";
 import AddToCartButton from "./AddToCartButton";
+import dummyMenu from "../mocks/dummyMenuData";
 
 const RestaurantDetails = () => {
   // state for menu is open/closed
@@ -16,7 +17,8 @@ const RestaurantDetails = () => {
   const { restaurantId } = useParams();
 
   // fetch data for menu
-  const menuData = useRestaurantMenu(restaurantId);
+  // const menuData = useRestaurantMenu(restaurantId);
+  const menuData = dummyMenu;
 
   
 

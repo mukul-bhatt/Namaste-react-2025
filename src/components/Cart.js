@@ -1,12 +1,15 @@
 import "./Cart.css";
 import { useState, useContext } from "react";
-import { CartContext } from "../utils/CartContext";
+import { CartContext, CountContext } from "../utils/CartContext";
 import MenuCard from "./MenuCard";
 
 const Cart = () => {
   const { cartItemsArray } = useContext(CartContext);
+  const {count} = useContext(CountContext);
 
-  return (
+  return JSON.stringify(count) === '{}' ? (
+    <h1>Cart is empty</h1>
+  ) :(
     <>
       <h1>Cart</h1>
       <div className="cart">
@@ -20,7 +23,10 @@ const Cart = () => {
         })}
       </div>
 
-      <h2>Items in Cart: {cartItemsArray.length}</h2>
+      <h2>Unique Items in Cart: {cartItemsArray.length}</h2>
+      <h2>Toal Items in Cart: {Object.values(count).reduce((acc, curr)=>{
+        return acc + curr;
+      }, 0)}</h2>
     </>
   );
 };

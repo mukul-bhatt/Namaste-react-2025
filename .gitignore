@@ -23,4 +23,7 @@ practice.js
 # Ignore Backend
 backend/
 
+# Ignore App.html
+app.html
+
 Size-reducer
