@@ -3,7 +3,7 @@ import "./NestedCard.css";
 
 const NestedCard = ({item, openTitle, setOpenTitle}) => {
 
-  console.log(item);
+  // console.log(item);
   const isNestedMenuOpen = openTitle === item.title;  // check implemented using title name - i think using id is better, so that i never get into this bug ever again
   return (
     <div>

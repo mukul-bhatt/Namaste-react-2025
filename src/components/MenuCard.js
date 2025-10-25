@@ -1,4 +1,5 @@
 import "./MenuCard.css";
+import AddToCartButton from "./AddToCartButton";
 
 
 const IMG_CDN_URL = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/`;
@@ -21,12 +22,13 @@ const MenuCard = ({data}) =>{
                     </h4>
                 </div>
     
-               
+              
     
                 <div className="right">
                     <img src={IMG_CDN_URL + imageId} />
                 </div>
     
+                <AddToCartButton data={data} id={data.card.info.id}/> 
             </div>
         )
 

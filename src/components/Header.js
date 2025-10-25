@@ -2,15 +2,22 @@ import "./Header.css"
 import { useState } from "react";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
+
+
+
 
 const logo = new URL(
   "../assets/food_logo.jpg?width=100&height=95",
   import.meta.url
 );
 
+
 const Header = () => {
   const [loginButton, setLoginButton] = useState("Login");
 
+
+  const cartItems = useSelector(store => store.cart.items)
   const status = useOnlineStatus();
   // console.log("status", status);
   return (
@@ -34,7 +41,9 @@ const Header = () => {
             <li>Grocery</li>
           </Link>
           
-          <li>Cart</li>
+          <Link to="cart" >
+            <li>Cart- {cartItems.length}</li>
+          </Link>
         </ul>
       </div>
       <button

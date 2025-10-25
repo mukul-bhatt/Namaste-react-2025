@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import "./RestaurantDetails.css";
 import NestedCard from "./NestedCard";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import dummyMenu from "../mocks/dummyMenudata";
 
 const RestaurantDetails = () => {
   // state for menu is open/closed
@@ -12,7 +13,8 @@ const RestaurantDetails = () => {
   const { restaurantId } = useParams();
 
   // fetch data for menu
-  const menuData = useRestaurantMenu(restaurantId);
+  // const menuData = useRestaurantMenu(restaurantId);
+  const menuData = dummyMenu;
 
 
   // Here useMemo can be used read about it, also graphQl can be used when data is large and only a small poriton of it is being used - do check it out

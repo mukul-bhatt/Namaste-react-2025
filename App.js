@@ -7,6 +7,7 @@ import AboutUs from "./src/components/AboutUs";
 import ContactUs from "./src/components/ContactUs";
 import Error from "./src/components/Error";
 import RestaurantDetails from "./src/components/RestaurantDetails";
+import Cart from "./src/components/Cart";
 // import Grocery from "./src/components/Grocery";
 
 const Grocery = lazy(() => import("./src/components/Grocery"));
@@ -31,6 +32,7 @@ root.render(
             </Suspense>
           }
         />
+        <Route path="/cart" element={<Cart />} />
 
         <Route path="*" element={<Error />} />
       </Route>
