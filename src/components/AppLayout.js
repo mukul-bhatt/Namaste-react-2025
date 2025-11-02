@@ -1,7 +1,5 @@
 import Header from "./Header";
 import { Outlet } from "react-router";
-import {useState, useContext} from "react";
-import { CartContext } from "../utils/CartContext";
 import CartProvider from "./CartProvider";
 
 
